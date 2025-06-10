@@ -73,7 +73,8 @@ if 'df' in st.session_state:
                 title="County-wise Sentiment Analysis in Florida (2022)"
             )
             fig3.update_layout(margin={"r": 0, "t": 40, "l": 0, "b": 0})
-            st.plotly_chart(fig3, use_container_width=True)
+            # st.plotly_chart(fig3, use_container_width=True)
+            st.plotly_chart(fig3, use_container_width=True, config={"scrollZoom": True})
         except Exception as e:
             st.error(f"Error generating map: {e}")
 
