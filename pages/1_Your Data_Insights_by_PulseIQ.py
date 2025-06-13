@@ -5,7 +5,16 @@ from textblob.sentiments import PatternAnalyzer
 import re
 import unicodedata
 
-st.header("📤 Upload CSV & Analyze - TextBlob (PatternAnalyzer)")
+# --- Global header styling (blue headers like PulseIQ) ---
+st.markdown("""
+<style>
+h1, h2, h3, h4 {
+    color: #00b4d8 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.header("📤 Get your Data Insights")
 
 uploaded_file = st.file_uploader("Upload your CSV file", type="csv")
 
