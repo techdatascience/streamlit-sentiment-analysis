@@ -4,3 +4,4 @@ numpy>=1.24.0
 plotly==5.19.0
 textblob==0.19.0
 requests
+unicodedata2
