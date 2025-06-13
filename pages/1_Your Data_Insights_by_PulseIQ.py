@@ -5,7 +5,9 @@ from textblob.sentiments import PatternAnalyzer
 import re
 import unicodedata
 
-# --- Global header styling (blue headers like PulseIQ) ---
+# Page config and styling
+st.set_page_config(page_title="Your Data Insights by PulseIQ", layout="wide")
+
 st.markdown("""
 <style>
 h1, h2, h3, h4 {
@@ -57,10 +59,20 @@ if uploaded_file:
     if 'Description' not in df.columns:
         st.error("CSV must contain a 'Description' column.")
     else:
+        # Clean and analyze
         df['Description_cleaned'] = df['Description'].apply(clean_description)
         df[['Polarity_pat_ana', 'Sentiments_pat_ana']] = df['Description_cleaned'].apply(analyze_sentiment)
 
+        # Store for session state access
         st.session_state['df'] = df
+
         st.success("✅ Data processed successfully!")
+
+        # Show dimensions
         st.write(f"🧮 Rows: {df.shape[0]} | Columns: {df.shape[1]}")
-        st.dataframe(df.head())
+
+        # Exclude specific columns in preview
+        columns_to_exclude = ["Current_MMWR_Year", "Description", "Total Cases"]
+        columns_to_show = [col for col in df.columns if col not in columns_to_exclude]
+
+        st.dataframe(df[columns_to_show].head())
