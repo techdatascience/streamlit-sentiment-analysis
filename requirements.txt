@@ -5,3 +5,4 @@ plotly==5.19.0
 textblob==0.19.0
 requests
 unicodedata2
+streamlit-lottie
